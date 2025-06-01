@@ -1,0 +1,13 @@
+#https://leetcode.com/problems/distribute-candies-among-children-ii/submissions/1650985663
+class Solution:
+    def distributeCandies(self, n: int, limit: int) -> int:
+        total_ways = 0
+        for i in range(4):
+            sign = -1 if i % 2 else 1
+            remaining = n - i * (limit + 1)
+            if remaining >= 0:
+                ways = comb(3, i) * comb(remaining + 3 - 1, 3 - 1)
+            else:
+                ways = 0
+            total_ways += sign * ways
+        return total_ways
